@@ -24,6 +24,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mad41.tripreminder.constants.Constants;
 import com.mad41.tripreminder.room_database.trip.Trip;
@@ -42,12 +44,13 @@ public class OnGoingFrag extends Fragment {
     TripAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
     MainScreen mainScreen;
-
+    ShowcaseView sh,shNote;
+    SharedPreferences prefs;
+    boolean firstStart,firstNote;
     onGoingCommunicator onGoingCommunicator1;
     private FloatingActionButton btn_add;
     private TripViewModel tripViewModel;
-    SharedPreferences prefs;
-    boolean firstStart;
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -55,6 +58,36 @@ public class OnGoingFrag extends Fragment {
         onGoingCommunicator1 = (onGoingCommunicator) getActivity();
        prefs =getActivity().getSharedPreferences("prefs", getActivity().MODE_PRIVATE);
          firstStart = prefs.getBoolean("firstStart", true);
+        firstNote = prefs.getBoolean("firstNote", true);
+         sh=new ShowcaseView.Builder(getActivity())
+                .setTarget(new ViewTarget(btn_add))
+                .setContentTitle("Click to add new trip")
+                .setStyle(R.style.CustomShowcaseTheme3)
+                 .build();
+
+             shNote=new ShowcaseView.Builder(getActivity())
+                     .setTarget(new ViewTarget(TripAdapter.btn_startCard))
+                     .setContentTitle("5555555555555")
+                     .setStyle(R.style.CustomShowcaseTheme3)
+                     .build();
+
+
+
+
+        if (firstStart){
+           // shNote.hide();
+        }
+
+        if (!firstStart){
+          sh.hide();
+        }
+
+   if (!firstStart&&!firstNote){
+   // shNote.hide();
+      }
+
+
+
     }
 
     @Override
@@ -77,6 +110,12 @@ public class OnGoingFrag extends Fragment {
         View fragment = inflater.inflate(R.layout.fragment_on_going2, container, false);
         mainScreen = (MainScreen) getActivity();
         btn_add = fragment.findViewById(R.id.btnf_add);
+
+
+
+
+
+
 
         recyclerView = (RecyclerView) fragment.findViewById(R.id.HistoryRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -105,6 +144,13 @@ public class OnGoingFrag extends Fragment {
         adapter.setOnNoteClickListener(new TripAdapter.NoteReview() {
             @Override
             public void onNoteClick(View view, int id) {
+                if(!firstStart&&firstNote){
+                   // shNote.hide();
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("firstNote", false);
+                    editor.apply();
+
+                }
                 Trip trip = null;
                 for (int i = 0; i < tripModelArrayList.size(); i++) {
                     if (tripModelArrayList.get(i).getId() == id) {
@@ -175,7 +221,15 @@ public class OnGoingFrag extends Fragment {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(firstStart){
+                    sh.hide();
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("firstStart", false);
+                    editor.apply();
+
+                }
                 onGoingCommunicator1.startAddTripFragment(null);
+
             }
         });
 

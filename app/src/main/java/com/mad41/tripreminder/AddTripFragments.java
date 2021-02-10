@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
@@ -95,7 +98,9 @@ public class AddTripFragments extends Fragment {
 
     int t1Hour2, t1Minuite2;
     private int mYear2, mMonth2, mDay2;
-
+    ShowcaseView sh;
+    SharedPreferences prefs;
+    boolean firstStart;
 
     private int id;
 
@@ -135,6 +140,21 @@ public class AddTripFragments extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         communicatorListener = (Communicator) getActivity();
+
+        prefs =getActivity().getSharedPreferences("prefs", getActivity().MODE_PRIVATE);
+        firstStart = prefs.getBoolean("firstStarthistory", true);
+        sh=new ShowcaseView.Builder(getActivity())
+                .setTarget(new ViewTarget(btn_add_note))
+                .setContentTitle("You can add notes for your trip from here")
+                .setStyle(R.style.CustomShowcaseTheme3)
+                .build();
+        if (!firstStart){
+            sh.hide();
+        }
+
+
+
+
     }
 
 
@@ -172,6 +192,13 @@ public class AddTripFragments extends Fragment {
         btn_add_note.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(firstStart){
+                    sh.hide();
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("firstStarthistory", false);
+                    editor.apply();
+
+                }
                 myNotes.add("");
                 addNoteAdapter.notifyDataSetChanged();
             }
@@ -190,7 +217,6 @@ public class AddTripFragments extends Fragment {
         btn_place = (Button) view.findViewById(R.id.btn_addTrip);
 
         roundSwitch = (Switch) view.findViewById(R.id.round_switch);
-        dataBaseInstance = MyRoomDataBase.getUserDataBaseInstance(getContext().getApplicationContext());
 
         tripViewModel = ViewModelProviders.of(requireActivity()).get(TripViewModel.class);
         Bundle bundle = getArguments();
@@ -323,6 +349,12 @@ public class AddTripFragments extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 
     private int checkRepeated() {

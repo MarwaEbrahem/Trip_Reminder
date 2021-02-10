@@ -105,6 +105,8 @@ dependencies {
     //drawing on maps
     implementation 'com.google.maps:google-maps-services:0.16.1'
     implementation 'org.slf4j:slf4j-simple:1.7.25'
+    //show case view
+    implementation 'com.github.amlcurran.showcaseview:library:5.4.3'
 
 
 }

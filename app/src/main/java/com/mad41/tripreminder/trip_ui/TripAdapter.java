@@ -33,6 +33,9 @@ public class TripAdapter extends RecyclerView.Adapter<com.mad41.tripreminder.tri
     private static OnStartClickListener startListener;
     Trip currentItem;
     private List<Trip> tripModels = new ArrayList<>();
+    public static ImageView btn_note_review;
+    public static ImageView btn_menu_card;
+    public static Button btn_startCard;
 
     @Override
     public ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,6 +49,7 @@ public class TripAdapter extends RecyclerView.Adapter<com.mad41.tripreminder.tri
 
         notifyDataSetChanged();
     }
+
 
     @Override
     public void onBindViewHolder(ExampleViewHolder holder, int position) {
@@ -97,9 +101,8 @@ public class TripAdapter extends RecyclerView.Adapter<com.mad41.tripreminder.tri
         public TextView txt_start;
         public TextView txt_end;
         public int id;
-        ImageView btn_note_review;
-        ImageView btn_menu_card;
-        private Button btn_startCard;
+
+
 
         public ExampleViewHolder(View itemView) {
             super(itemView);
