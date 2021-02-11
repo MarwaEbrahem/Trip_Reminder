@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
+    android:layout_margin="3dp"
     android:animateLayoutChanges="true"
     android:animationCache="true"
     app:cardCornerRadius="30dp"
@@ -19,7 +19,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="46dp"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:weightSum="2">
@@ -27,7 +27,7 @@
             <TextView
                 android:id="@+id/tripName"
                 android:layout_width="wrap_content"
-                android:layout_height="55dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
@@ -42,13 +42,14 @@
                 android:paddingRight="10dp"
                 android:text="TextView"
                 android:textAlignment="textStart"
-                android:textSize="18sp"
+                android:textColor="@color/places_autocomplete_search_text"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/Status"
                 android:layout_width="wrap_content"
-                android:layout_height="55dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
@@ -63,7 +64,8 @@
                 android:paddingEnd="10dp"
                 android:text="TextView"
                 android:textAlignment="textStart"
-                android:textSize="18sp"
+                android:textColor="@color/places_autocomplete_search_text"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -71,25 +73,28 @@
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="103dp"
+            android:layout_marginTop="3dp"
             android:layout_marginBottom="10dp"
             android:visibility="visible"
-            app:srcCompat="@drawable/ic_undraw_world_9iqb" />
+            app:srcCompat="@drawable/ic_undraw_navigator_a479" />
 
         <TextView
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="30dp"
             android:animateLayoutChanges="true"
-            android:drawableLeft="@drawable/ic_date"
+            android:drawableLeft="@drawable/ic_date2"
             android:text="TextView"
-            android:textSize="20dp"
+            android:textSize="14dp"
             android:visibility="gone"
+            android:textAlignment="viewEnd"
             android:background="@drawable/rounded_edittext"
             android:drawablePadding="10dp"
+            android:textColor="@color/places_autocomplete_search_text"
             android:backgroundTint="@color/browser_actions_bg_grey"/>
 
         <TextView
@@ -97,15 +102,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="30dp"
             android:animateLayoutChanges="true"
-            android:drawableLeft="@drawable/ic_time"
+            android:drawableLeft="@drawable/ic_time2"
             android:text="TextView"
-            android:textSize="20dp"
+            android:textSize="14dp"
             android:visibility="gone"
             android:background="@drawable/rounded_edittext"
             android:drawablePadding="10dp"
+            android:textColor="@color/places_autocomplete_search_text"
             android:backgroundTint="@color/browser_actions_bg_grey"/>
 
         <TextView
@@ -113,15 +119,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="30dp"
             android:animateLayoutChanges="true"
-            android:drawableLeft="@drawable/ic_add_location"
+            android:drawableLeft="@drawable/ic_add_location2"
             android:text="TextView"
-            android:textSize="20dp"
+            android:textSize="14dp"
             android:visibility="gone"
             android:background="@drawable/rounded_edittext"
             android:drawablePadding="10dp"
+            android:textColor="@color/places_autocomplete_search_text"
             android:backgroundTint="@color/browser_actions_bg_grey"/>
 
         <TextView
@@ -130,28 +137,29 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="to"
-            android:textColor="@color/purple_500"
+            android:textColor="#1976d2"
             android:textColorLink="#FFFFFF"
-            android:textSize="25dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:visibility="gone"
             android:drawablePadding="10dp"
-           />
+            />
 
         <TextView
             android:id="@+id/End"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="30dp"
             android:animateLayoutChanges="true"
-            android:drawableLeft="@drawable/ic_add_location"
+            android:drawableLeft="@drawable/ic_add_location2"
             android:drawablePadding="10dp"
             android:text="TextView"
-            android:textSize="20dp"
+            android:textSize="14dp"
             android:visibility="gone"
             android:background="@drawable/rounded_edittext"
+            android:textColor="@color/places_autocomplete_search_text"
             android:backgroundTint="@color/browser_actions_bg_grey"/>
 
 
@@ -171,30 +179,32 @@
                 <Button
                     android:id="@+id/details"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="7dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="7dp"
                     android:layout_weight="1"
                     android:animateLayoutChanges="true"
                     android:background="@drawable/rounded_edittext"
-                    android:onClick="Details"
-                    android:text="show Details"
                     android:backgroundTint="@color/browser_actions_bg_grey"
-                    app:backgroundTint="#ffb300"/>
+                    android:onClick="Details"
+                    android:text="@string/showDetails"
+                    android:textAllCaps="false"
+                    app:backgroundTint="#ffb300" />
 
                 <Button
                     android:id="@+id/delete"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="60dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
-                    android:text="Delete"
                     android:background="@drawable/rounded_edittext"
                     android:backgroundTint="@color/browser_actions_bg_grey"
-                    app:backgroundTint="#ffb300"/>
+                    android:text="@string/delete"
+                    android:textAllCaps="false"
+                    app:backgroundTint="#ffb300" />
 
             </LinearLayout>
 
@@ -207,8 +217,8 @@
 
                 <ImageButton
                     android:id="@+id/DNotes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="55dp"
+                    android:layout_height="62dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginRight="30dp"

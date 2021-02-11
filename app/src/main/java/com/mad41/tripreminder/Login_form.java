@@ -64,7 +64,6 @@ public class Login_form extends AppCompatActivity {
     public static Thread readFireBase;
     private FirebaseAuth mAuth;
     private CallbackManager mCallbackManager;
-    private LoginButton loginButton;
     private FirebaseAuth.AuthStateListener authStateListener;
     private AccessTokenTracker accessTokenTracker;
     private static final String TAG = "EmailPassword";
@@ -101,7 +100,6 @@ public class Login_form extends AppCompatActivity {
         forgetPassword = findViewById(R.id.forgetPassword);
         progress_bar = findViewById(R.id.progressBar);
         Login = findViewById(R.id.LoginButton);
-        loginButton = findViewById(R.id.login_button);
         signInButton = (SignInButton)findViewById(R.id.googleBtn);
         mAuth = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
@@ -128,7 +126,7 @@ public class Login_form extends AppCompatActivity {
                         tripViewModel.insert(trip);
                     }
                 }
-                writeInSharedPreference();
+
                 setLoginAlarms();
 
             }
@@ -152,21 +150,6 @@ public class Login_form extends AppCompatActivity {
                 }
             }
         });
-
-
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                handleFacebookToken(loginResult.getAccessToken());
-            }
-            @Override
-            public void onCancel() {}
-            @Override
-            public void onError(FacebookException error) {}
-
-        });
-
-
         accessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
@@ -206,6 +189,7 @@ public class Login_form extends AppCompatActivity {
                                         startActivity(intent);
                                         Toast.makeText(Login_form.this, "Login complete.", Toast.LENGTH_SHORT).show();
                                         readFireBase.start();
+                                        writeInSharedPreference();
                                        writeUserStatus("true",UserID);
                                     } else {
                                         Toast.makeText(Login_form.this, "Please check your data or create account.", Toast.LENGTH_SHORT).show();
@@ -241,28 +225,6 @@ public class Login_form extends AppCompatActivity {
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent,RC_SIGN_IN);
     }
-    private void handleFacebookToken(AccessToken token){
-//        Toast.makeText(this, "handleFacebookToken", Toast.LENGTH_SHORT).show();
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-
-                   // Toast.makeText(Login_form.this, "task is Successful", Toast.LENGTH_SHORT).show();
-                    readFireBase.start();
-                    writeUserStatus("true", UserID);
-                    UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    Intent intent = new Intent(getApplicationContext(), MainScreen.class);
-                    intent.putExtra("userID",UserID );
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(Login_form.this, "please check your internet connection", Toast.LENGTH_LONG).show();
-
-                }
-            }
-        });
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -296,6 +258,7 @@ public class Login_form extends AppCompatActivity {
                     Toast.makeText(Login_form.this, "Successfully Login", Toast.LENGTH_SHORT).show();
                     UserID = FirebaseAuth.getInstance().getCurrentUser().getUid() ;
                     readFireBase.start();
+                    writeInSharedPreference();
                     writeUserStatus("true", UserID);
                     Intent intent = new Intent(getApplicationContext(), MainScreen.class);
                     intent.putExtra("userID",UserID );
