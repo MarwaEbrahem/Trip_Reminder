@@ -77,7 +77,7 @@
     <string name="welcome">Welcome</string>
     <string name="logintocontinue">Log in to continue</string>
     <string name="login_to_continue">Login to continue</string>
-    
+
 
     <string-array name="spinner">
         <item>Edit Trip</item>
