@@ -115,7 +115,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<com.mad41.tripreminder.
                     holder.txt_end.setVisibility(View.VISIBLE);
                     holder.txt_end.startAnimation(slideDown);
                     holder.to.setVisibility(View.VISIBLE);
-                    holder.Details.setText("Hide Details");
+                   // holder.Details.setText("Hide Details");
                     holder.Details.startAnimation(slideDown);
                     holder.to.startAnimation(slideDown);
 
@@ -127,7 +127,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<com.mad41.tripreminder.
                     holder.txt_start.setVisibility(View.GONE);
                     holder.txt_end.setVisibility(View.GONE);
                     holder.to.setVisibility(View.GONE);
-                    holder.Details.setText("Show Details");
+                   // holder.Details.setText("Show Details");
                     flag = true;
                 }
 

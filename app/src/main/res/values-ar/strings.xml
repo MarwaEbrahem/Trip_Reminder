@@ -30,7 +30,7 @@
     <string name="cancel">إالغاء</string>
     <string name="delete">مسح</string>
     <string name="edit_trip">تعديل الرحلة</string>
-    <string name="resetapasswordHint">من فضلت أدخل بريدك الإلكتروني</string>
+    <string name="resetapasswordHint">من فضلك أدخل بريدك الإلكتروني</string>
     <string name="BackFromResetPassword">رجوع</string>
     <string name="send">إرسال</string>
     <string name="forgetPassword"><u>نسيت كلمة السر؟</u></string>
@@ -77,6 +77,10 @@
 
 
 
+    <string name="showDetails">اظهارالتفاصيل</string>
+    <string name="welcome">مرحبا</string>
+    <string name="logintocontinue">سجل دخول للاستمرار</string>
+    <string name="login_to_continue">سجل دخول للاستمرار</string>
 
 
     <string-array name="spinner">

@@ -73,7 +73,11 @@
     <string name="status">status</string>
     <string name="startb">Start</string>
     <string name="my_notes">My Notes</string>
-
+    <string name="showDetails">Show Details</string>
+    <string name="welcome">Welcome</string>
+    <string name="logintocontinue">Log in to continue</string>
+    <string name="login_to_continue">Login to continue</string>
+    
 
     <string-array name="spinner">
         <item>Edit Trip</item>
